@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./images/logo.gif">
+<img src="./images/logo-branco.gif">
 
 <h1>generator-qrcode</h1>
 
