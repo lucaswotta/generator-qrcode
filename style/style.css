@@ -144,10 +144,10 @@ header p {
     align-items: center;
 }
 
-footer {
+.footer {
     font-family: monospace;
     font-weight: bold;
-    margin-top: -11.5%;
+    margin-top: -6%;
     width: 170px;
     height: 30px;
     display: flex;
@@ -158,6 +158,6 @@ footer {
     font-size: 1em;
 }
 
-footer span {
-    position: fixed;
+.footer span {
+    position: relative;
 }
