@@ -144,46 +144,22 @@ header p {
     align-items: center;
 }
 
-.footer {
-    font-family: monospace;
-    font-weight: bold;
-    margin-top: -6%;
-    width: 170px;
-    height: 30px;
+footer {
+    width: 100%;
+    height: 5%;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: #2E3C40;
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+footer span {
+    font-family: monospace;
     font-size: 1em;
-}
-
-.footer span {
-    position: relative;
-    color: #ffffff80;
     font-weight: bold;
-    animation: nome 20s ease infinite;
-}
-
-.footer span::after{
-    content: ' 🤖';
-    color: #fff;
-}
-
-@keyframes nome {
-    0% {
-        color: #ee765280;
-    }
-
-    33% {
-        color: #e73c7e80;
-    }
-
-    66% {
-        color: #23a5d580;
-    }
-
-    100% {
-        color: #23d5ab80;
-    }
 }
