@@ -147,19 +147,20 @@ header p {
 footer {
     width: 100%;
     height: 5%;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 0;
+    border: 1px solid #ffffff4d;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    position: absolute;
+    bottom: 0;
 }
 
 footer span {
     font-family: monospace;
     font-size: 1em;
     font-weight: bold;
+    text-align: center;
 }
