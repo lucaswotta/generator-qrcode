@@ -15,7 +15,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
 }
 
 @keyframes gradient {
@@ -144,7 +143,7 @@ header p {
     align-items: center;
 }
 
-footer {
+.footer {
     width: 100%;
     height: 5%;
     display: flex;
@@ -158,7 +157,7 @@ footer {
     bottom: 0;
 }
 
-footer span {
+.footer span {
     font-family: monospace;
     font-size: 1em;
     font-weight: bold;
