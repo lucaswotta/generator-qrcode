@@ -160,4 +160,30 @@ header p {
 
 .footer span {
     position: relative;
+    color: #ffffff80;
+    font-weight: bold;
+    animation: nome 20s ease infinite;
+}
+
+.footer span::after{
+    content: ' 🤖';
+    color: #fff;
+}
+
+@keyframes nome {
+    0% {
+        color: #ee765280;
+    }
+
+    33% {
+        color: #e73c7e80;
+    }
+
+    66% {
+        color: #23a5d580;
+    }
+
+    100% {
+        color: #23d5ab80;
+    }
 }
