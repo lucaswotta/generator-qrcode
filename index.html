@@ -3,35 +3,56 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+    
     <title>Gerador de QR Code</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon">
 </head>
 
-<body>
-    <div class="body">
-        <div class="container" data-tilt data-tilt-glare data-tilt-max-glare="0.6">
-            <img src="./images/logo.gif" alt="logo">
-            <header>
-                <h1>QR Code</h1>
-                <p>Insira uma URL ou texto para gerar um QR Code</p>
-            </header>
-            <main class="form">
-                <input type="text" placeholder="Insira aqui" autofocus required>
-                <button>Gerar</button>
-            </main>
-            <div class="qr-code">
-                <img src="" class="img" alt="qr-code-gerado" download>
+<body class="loading">
+    <div class="blur-background-shape shape-1"></div>
+    <div class="blur-background-shape shape-2"></div>
+
+    <main class="content">
+        <div class="container" data-tilt data-tilt-full-page-listening>
+            <div class="view form-view">
+                <img src="/images/logo-branco.gif" alt="Logo animado" class="logo">
+                <header>
+                    <h1>QR Code</h1>
+                    <p>Insira texto ou URL para criar seu código instantaneamente.</p>
+                </header>
+                <div class="form">
+                    <label for="qr-input" class="sr-only">Insira o texto ou URL</label>
+                    <input type="text" id="qr-input" placeholder="Seu texto ou URL aqui..." required>
+                    <p class="error-message" aria-live="polite"></p>
+                    <button class="generate-btn">Gerar QR Code</button>
+                </div>
+            </div>
+
+            <div class="view result-view">
+                <div id="qrcode-canvas"></div>
+                <p class="qr-data-text"></p>
+                <div class="actions">
+                    <button class="download-btn">Baixar (PNG)</button>
+                    <button class="back-btn">Gerar Novo</button>
+                </div>
             </div>
         </div>
-    </div>
-        <div class="footer">
-            <span>by Lucas Motta</span>
-        </div>
-    <script src="./js/script.js"></script>
-    <script src="./js/vanilla-tilt.js"></script>
+    </main>
+
+    <footer class="footer">
+        <span>by Lucas Motta</span>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="/js/vanilla-tilt.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
