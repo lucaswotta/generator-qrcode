@@ -2,57 +2,192 @@
 <html lang="pt-BR">
 
 <head>
+    <!-- Configurações essenciais do documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Gerador de QR Code</title>
 
+    <!-- Metadados para SEO (Otimização para Mecanismos de Busca) -->
+    <meta name="description" content="Crie QR Codes únicos com seu logo e texto personalizado de forma gratuita.">
+    <meta name="author" content="Lucas Motta">
+
+    <!-- Metadados para Open Graph (compartilhamento em redes sociais como Facebook, WhatsApp) -->
+    <meta property="og:title" content="Gerador de QR">
+    <meta property="og:description"
+        content="Crie QR Codes únicos com seu logo e texto personalizado de forma gratuita.">
+    <meta property="og:image" content="https://lucaswotta.github.io/generator-qrcode/src/assets/images/screenshot.webp">
+    <meta property="og:url" content="https://lucaswotta.github.io/generator-qrcode/">
+    <meta property="og:type" content="website">
+
+    <!-- Metadados para Twitter Cards (compartilhamento no Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gerador de QR">
+    <meta name="twitter:description"
+        content="Crie QR Codes únicos com seu logo e texto personalizado de forma gratuita.">
+    <meta name="twitter:image"
+        content="https://lucaswotta.github.io/generator-qrcode/src/assets/images/screenshot.webp">
+
+    <!-- Fontes e Estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style/main.css">
+
+    <!-- Ícone da página (Favicon) -->
+    <link rel="icon" href="./src/assets/images/favicon.webp" type="image/webp">
 </head>
 
-<body class="loading">
-    <div class="blur-background-shape shape-1"></div>
-    <div class="blur-background-shape shape-2"></div>
-
-    <main class="content">
-        <div class="container" data-tilt data-tilt-full-page-listening>
+<body class="layout loading">
+    <!-- Conteúdo principal da página -->
+    <main class="main-content">
+        <!-- Contêiner principal da aplicação -->
+        <div class="container">
+            <!-- Tela de Formulário (inicial) -->
             <div class="view form-view">
-                <img src="./images/logo-branco.gif" alt="Logo animado" class="logo">
-                <header>
+                <img src="./src/assets/images/logo.gif" alt="Logo animado" class="logo">
+
+                <header class="header-content">
                     <h1>QR Code</h1>
                     <p>Insira texto ou URL para criar seu código instantaneamente.</p>
                 </header>
-                <div class="form">
-                    <label for="qr-input" class="sr-only">Insira o texto ou URL</label>
-                    <input type="text" id="qr-input" placeholder="Seu texto ou URL aqui..." required>
-                    <p class="error-message" aria-live="polite"></p>
-                    <button class="generate-btn">Gerar QR Code</button>
-                </div>
+
+                <!-- Formulário para gerar o QR Code -->
+                <form class="form" id="qr-form" novalidate>
+                    <!-- Campo para inserir o texto ou URL -->
+                    <div class="form-group">
+                        <label for="qr-input" class="sr-only">Insira o texto ou URL</label>
+                        <input type="text" id="qr-input" placeholder="Insira seu texto ou URL" required
+                            aria-describedby="error-message">
+                    </div>
+
+                    <!-- Campo para upload do logo -->
+                    <div class="form-group">
+                        <label for="logo-upload" class="custom-file-upload" data-state="placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                                <path d="M12 12v9" />
+                                <path d="m16 16-4-4-4 4" />
+                            </svg>
+                            <span id="logo-file-name">Adicionar imagem</span>
+                            <input type="file" id="logo-upload" accept="image/png, image/jpeg, image/svg+xml">
+                        </label>
+                    </div>
+
+                    <!-- Campo para texto adicional no template -->
+                    <div class="form-group">
+                        <label for="template-text-input" class="sr-only">Adicionar texto ao template</label>
+                        <input type="text" id="template-text-input" placeholder="Texto para o template">
+                    </div>
+
+                    <!-- Seletor de cor para o template -->
+                    <fieldset class="form-group color-group">
+                        <legend class="color-group-label">Cor do Template</legend>
+                        <div class="color-palette" id="color-palette" role="radiogroup">
+                            <button type="button" class="color-swatch active" data-color="#0f172a"
+                                aria-label="Cor preta"></button>
+                            <button type="button" class="color-swatch" data-color="#f8fafc"
+                                aria-label="Cor branca"></button>
+                            <button type="button" class="color-swatch" data-color="#059669"
+                                aria-label="Cor verde"></button>
+                            <button type="button" class="color-swatch" data-color="#0284c7"
+                                aria-label="Cor azul"></button>
+                            <button type="button" class="color-swatch" data-color="#dc2626"
+                                aria-label="Cor vermelha"></button>
+                            <button type="button" class="color-swatch" data-color="#ca8a04"
+                                aria-label="Cor amarela"></button>
+                            <label for="custom-color-picker" class="color-swatch custom-color-label"
+                                aria-label="Escolher cor personalizada">
+                                <div class="custom-color-swatch">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+                                        <path d="M12 14v-2" />
+                                        <path d="M12 9V7" />
+                                        <path d="m15 11-1-1" />
+                                        <path d="m15 8-1-1" />
+                                        <path d="m9 11 1-1" />
+                                        <path d="m9 8 1-1" />
+                                    </svg>
+                                </div>
+                            </label>
+                            <input type="color" id="custom-color-picker" class="sr-only" value="#0f172a">
+                        </div>
+                    </fieldset>
+
+                    <!-- Mensagem de erro (visível apenas quando necessário) -->
+                    <p id="error-message" class="error-message" aria-live="polite"></p>
+
+                    <!-- Botão para submeter o formulário -->
+                    <button type="submit" class="btn btn--primary generate-btn">
+                        <span>Gerar QR Code</span>
+                    </button>
+                </form>
             </div>
 
+            <!-- Tela de Resultado (visível após gerar o QR Code) -->
             <div class="view result-view">
-                <div id="qrcode-canvas"></div>
-                <p class="qr-data-text"></p>
+                <header class="header-content">
+                    <h2>Seu QR Code está pronto!</h2>
+                    <p>Escolha a resolução e faça o download.</p>
+                </header>
+                <!-- O canvas onde o QR Code será desenhado -->
+                <canvas id="qr-canvas" width="600" height="600" style="display: none;"></canvas>
+
+                <!-- Ações disponíveis após a geração -->
                 <div class="actions">
-                    <button class="download-btn">Baixar (PNG)</button>
-                    <button class="back-btn">Gerar Novo</button>
+                    <!-- Opções de resolução para download -->
+                    <fieldset class="resolution-fieldset">
+                        <legend class="sr-only">Escolha a resolução do download</legend>
+                        <div class="resolution-options">
+                            <input type="radio" id="res-512" name="resolution" value="512" checked>
+                            <label for="res-512">512px</label>
+
+                            <input type="radio" id="res-1024" name="resolution" value="1024">
+                            <label for="res-1024">1024px</label>
+
+                            <input type="radio" id="res-2048" name="resolution" value="2048">
+                            <label for="res-2048">2048px</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Botões de ação (Download, Gerar Novo) -->
+                    <div class="action-buttons">
+                        <button class="btn btn--primary download-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            <span>Baixar (PNG)</span>
+                        </button>
+                        <button class="btn btn--tertiary back-btn">
+                            <span>Gerar Novo</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Rodapé da página -->
     <footer class="footer">
-        <span>by Lucas Motta</span>
+        <div class="footer-content">
+            <div class="footer-legal">
+                © 2025 Lucas Motta. Feito com carinho e IA.
+            </div>
+        </div>
     </footer>
-    
+
+    <!-- Scripts da aplicação -->
+    <!-- Biblioteca externa para gerar o QR Code -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <script src="./js/vanilla-tilt.js"></script>
-    <script src="./js/script.js"></script>
+    <!-- Lógica principal da aplicação -->
+    <script src="./src/js/main.js"></script>
 </body>
 
 </html>
