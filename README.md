@@ -4,17 +4,15 @@ Uma aplicação client-side para criar e personalizar QR Codes. Permite gerar c�
 
 ![Screenshot da aplicação](src/assets/images/screenshot.webp)
 
-> **Acesse a aplicação:** <a href="https://lucaswotta.github.io/generator-qrcode/" target="_blank" rel="noopener noreferrer">https://lucaswotta.github.io/generator-qrcode/</a>
-
 ## Sobre o Projeto
 
-Este projeto é desenvolvido com **Vanilla JavaScript, HTML5 e a API de Canvas**. A ferramenta coordena a geração do código, a personalização dos elementos visuais e a renderização final em uma imagem PNG, com todo o processamento ocorrendo no lado do cliente.
+Este projeto é desenvolvido com **Vanilla JavaScript e a API de Canvas**. A ferramenta coordena a geração do código, a personalização dos elementos visuais e a renderização final em uma imagem PNG, com todo o processamento ocorrendo no lado do cliente.
 
 ### Recursos
 
   * **100% Client-Side:** Não depende de servidor. A aplicação funciona offline após o primeiro carregamento.
   * **Personalização:** Permite adicionar um logo, um texto de apoio e aplicar cores customizadas.
-  * **Download em Alta Resolução:** Exporta os QR Codes em diferentes resoluções (512px, 1024px) para uso digital ou impresso.
+  * **Download em Alta Resolução:** Exporta os QR Codes em diferentes resoluções (512px, 1024px e 2048px).
   * **Otimizações de Performance:** Utiliza `debounce` nos campos de entrada para evitar renderizações excessivas e realiza a compressão de imagens no navegador.
   * **Código Modular:** A lógica da aplicação é organizada em módulos para facilitar a manutenção.
 
@@ -32,19 +30,19 @@ A imagem final é construída através de um fluxo de renderização em camadas,
       * Texto de apoio na parte inferior, com fonte de tamanho dinâmico.
 4.  **Exportação:** Ao clicar para baixar, o processo de renderização é repetido em um canvas em memória na resolução selecionada, gerando o arquivo PNG final.
 
-### Arquitetura e Decisões Técnicas
+### Decisões Técnicas
 
 O projeto foi construído com os seguintes princípios:
 
   * **Arquitetura Modular:** O código é segregado em módulos com responsabilidades definidas (`Validator`, `QRRenderer`, `MemoryManager`, etc).
   * **Gerenciamento de Estado:** Um objeto `state` centralizado controla os dados da aplicação, tornando o fluxo de dados mais previsível.
   * **Gerenciamento de Memória:** Um `MemoryManager` é responsável pela limpeza de elementos temporários (canvas e Object URLs) para evitar vazamentos de memória.
-  * **Processamento Client-Side:** Toda a carga de processamento é feita no navegador, eliminando a necessidade de um backend.
+  * **Processamento Client-Side:** Toda a carga de processamento é feita no navegador, eliminando a necessidade de backend.
 
 ### Estrutura do Projeto
 
 ```
-qr-code-generator/
+generator-qrcode/
 ┣ 📜 index.html
 ┣ 📂 src/
 ┃ ┣ 📂 js/
